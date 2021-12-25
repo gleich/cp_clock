@@ -4,14 +4,15 @@ import board
 import busio
 from time import sleep
 
+import start
+
 
 def main():
     logger.debug("Hello World!")
     with board.I2C() as i2c:
         display = CharlieBonnet(i2c)
-        display.fill(5)
-
-        sleep(10)
+        start.animate_on(display)
+        sleep(2)
         display.fill(0)
 
 
