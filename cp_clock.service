@@ -1,8 +1,7 @@
 [Unit]
 Description=CharliePlex Bonnet LED Clock
 
-Wants=network.target
-After=syslog.target network-online.target
+After=syslog.target
 
 [Service]
 Type=simple
