@@ -17,7 +17,7 @@ def mainloop(display) -> None:
         now = datetime.now()
 
         # Milliseconds
-        ms_loc = coordinate_from_percent((now.microsecond / 10000) / 99, 0)
+        ms_loc = coordinate_from_percent((now.microsecond * 0.001) / 999, 0)
         if ms_loc != old_ms_loc:
             set_pixel(display, ms_loc, old_ms_loc)
             old_ms_loc = ms_loc
@@ -65,4 +65,7 @@ def coordinate_from_percent(percent: float, level: int) -> Tuple:
 
 def set_pixel(display, loc: Tuple, old_loc: Tuple) -> None:
     display.pixel(old_loc[0], old_loc[1], 1)
-    display.pixel(loc[0], loc[1], 10)
+    if loc[1] == 0:
+        display.pixel(loc[0], loc[1], 50)
+    else:
+        display.pixel(loc[0], loc[1], 10)
