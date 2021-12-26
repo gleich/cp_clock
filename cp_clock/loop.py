@@ -60,6 +60,8 @@ def coordinate_from_percent(percent: float, level: int) -> Tuple:
         y = coordinate_sum - 1
     if y > 7:
         y = 7
+    if y < 0:
+        y = 0
     return (x + (3 * level), y)
 
 
