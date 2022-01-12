@@ -19,6 +19,7 @@ def mainloop(display) -> None:
         # Milliseconds
         ms_loc = coordinate_from_percent((now.microsecond * 0.001) / 999, 0)
         if ms_loc != old_ms_loc:
+            print(ms_loc)
             set_pixel(display, ms_loc, old_ms_loc)
             old_ms_loc = ms_loc
 
@@ -52,12 +53,11 @@ def coordinate_from_percent(percent: float, level: int) -> Tuple:
     y = 0
     coordinate_sum = round(percent * 100 / 6.25)
     if coordinate_sum > 8:
-        x = 2
-        coordinate_sum -= 8
-        y = 8 - coordinate_sum
-    else:
         x = 1
-        y = coordinate_sum - 1
+        y = 8 - (coordinate_sum - 8)
+    else:
+        x = 2
+        y = coordinate_sum
     if y > 7:
         y = 7
     if y < 0:
@@ -67,7 +67,7 @@ def coordinate_from_percent(percent: float, level: int) -> Tuple:
 
 def set_pixel(display, loc: Tuple, old_loc: Tuple) -> None:
     display.pixel(old_loc[0], old_loc[1], 1)
-    if loc[1] == 0:
+    if loc[1] == 7:
         display.pixel(loc[0], loc[1], 50)
     else:
         display.pixel(loc[0], loc[1], 10)
