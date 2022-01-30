@@ -19,7 +19,6 @@ def mainloop(display) -> None:
         # Milliseconds
         ms_loc = coordinate_from_percent((now.microsecond * 0.001) / 999, 0)
         if ms_loc != old_ms_loc:
-            print(ms_loc)
             set_pixel(display, ms_loc, old_ms_loc)
             old_ms_loc = ms_loc
 
